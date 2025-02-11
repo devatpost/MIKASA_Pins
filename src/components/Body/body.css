@@ -1,0 +1,140 @@
+.innerBody{
+    width: 100%;
+    display: flex;
+    height: calc(100vh - 150px);
+}
+
+.filterInput{
+    height: calc(100% - 60px);
+    width: 30%;
+    margin:auto;
+    display: flex;
+    justify-content: center;
+}
+
+.innerBox{
+  width: 70%;
+  height: 100%;
+  background-color: #C4B9AA;
+  border-radius: 15px;
+  border: 1px solid  #C4B9AA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container{
+    height: 50%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 45px; /* Space between elements */
+}
+
+/* Common style for labels (Imagine a & Made of) */
+.smallHeading {
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 5px;
+  }
+  
+  /* Common style for dropdown inputs */
+  .dropdown {
+    width: 91%;
+    height: 41px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 14px;
+    background-color: white;
+    cursor: pointer;
+    color: #8A8A8A;
+    appearance: none; /* Hides default appearance */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */  
+  }
+  
+  .imagineDrop{
+    position: relative;
+  }
+
+.imagineDrop:after {
+ content: '>';
+ font: 30px "Consolas", monospace;
+ color: #8A8A8A;
+ -webkit-transform: rotate(90deg);
+ -moz-transform: rotate(90deg);
+ -ms-transform: rotate(90deg);
+ transform: rotate(90deg);
+ right: 40px;
+ top: 2px;
+ position: absolute;
+ pointer-events: none;
+}
+
+.pins {
+    width: 70%;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  .pins::-webkit-scrollbar {
+    display: none;  /* Hides scrollbar in Chrome, Safari, and Edge */
+}
+
+
+  .image-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+/* Ensure the image fits correctly */
+.image-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 32px;
+    object-fit: cover; 
+}
+
+/* plus icon initially hidden */
+/* .plusIcon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: rgba(243, 243, 243, 0.4); 
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; 
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+} */
+
+/* .plusIcon img {
+    width: 0.9375rem;
+    height: 0.875rem;
+} */
+
+/* Show the icon on hover */
+.image-item:hover {
+    transform: scale(1.03); 
+    z-index: 10001;
+}
+
+.image-grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-item {
+    margin-bottom: 30px; 
+    width: calc(25% - 15px); 
+    max-width: 400px;
+}
