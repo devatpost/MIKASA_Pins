@@ -34,7 +34,7 @@ const Pins = () => {
   }, [itemData]);
 
   const handleImageClick = (alt) => {
-    const url = `https://mikasa.mikasahub.com?ImageID=${encodeURIComponent(alt)}`;
+    const url = `https://sideboards.mikasahub.com?ImageID=${encodeURIComponent(alt)}`;
     window.location.href = url;
   };
 
