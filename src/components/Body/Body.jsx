@@ -1,15 +1,18 @@
-import React from 'react'
-import './body.css'
-import FilterInput from './FilterInput'
-import Pins from './Pins'
+import React, { useState } from "react";
+import "./body.css";
+import FilterInput from "./FilterInput";
+import Pins from "./Pins";
 
 const Body = () => {
-  return (
-    <div className='innerBody'>
-        <FilterInput/>
-        <Pins/>
-    </div>
-  )
-}
+  const [selectedCategory, setSelectedCategory] = useState("Sideboard");
+  const [selectedMaterial, setSelectedMaterial] = useState("all");
 
-export default Body
+  return (
+    <div className="innerBody">
+      <FilterInput setSelectedCategory={setSelectedCategory} setSelectedMaterial={setSelectedMaterial} />
+      <Pins selectedCategory={selectedCategory} selectedMaterial={selectedMaterial} />
+    </div>
+  );
+};
+
+export default Body;

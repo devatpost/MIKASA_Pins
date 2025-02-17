@@ -1,7 +1,11 @@
 import neo4j from 'neo4j-driver';
 
-export const handler = async () => {
+export const handler = async (event) => {
   try {
+    // Parse query parameters
+    const { furniture_type, material_type } = event.queryStringParameters || {};
+    // console.log(furniture_type,material_type);
+
     // Connect to Neo4j
     const driver = neo4j.driver(
       process.env.NEO4J_URI,
@@ -9,10 +13,29 @@ export const handler = async () => {
     );
     const session = driver.session();
 
-    // Query the database
-    const result = await session.run(
-      `MATCH (i:Image)-[r:HAS_CONFIGURATION]->(c:Configuration) RETURN i.name AS name, i.url AS url`
-    );
+    // Construct the query dynamically
+    let query = `
+      MATCH (i:Image)-[r:HAS_CONFIGURATION]->(c:Configuration)
+      MATCH (c)-[:HAS_MATERIAL]->(m:Material)
+      WHERE 1=1
+    `;
+
+    const params = {};
+
+    if (furniture_type) {
+      query += ` AND r.furniture_type = $furniture_type`;
+      params.furniture_type = furniture_type;
+    }
+
+    if (material_type && material_type !== 'all') {
+      query += ` AND m.material_type = $material_type`;
+      params.material_type = material_type;
+    }
+
+    query += ` RETURN i.name AS name, i.url AS url`;
+
+    // Execute query
+    const result = await session.run(query, params);
 
     const images = result.records.map(record => ({
       title: record.get('name'),

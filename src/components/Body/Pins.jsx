@@ -1,31 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import Masonry from 'masonry-layout';
-import imagesLoaded from 'imagesloaded';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import Masonry from "masonry-layout";
+import imagesLoaded from "imagesloaded";
+import axios from "axios";
 
-const Pins = () => {
+const Pins = ({ selectedCategory, selectedMaterial }) => {
   const [itemData, setItemData] = useState([]);
 
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get('/.netlify/functions/getImages');
+        const response = await axios.get("/.netlify/functions/getImages", {
+          params: { furniture_type: selectedCategory, material_type: selectedMaterial },
+        });
         setItemData(response.data);
       } catch (error) {
-        console.error('Error fetching images:', error);
+        console.error("Error fetching images:", error);
       }
     };
+    
 
     fetchImages();
-  }, []);
+  }, [selectedCategory, selectedMaterial]);
 
   useEffect(() => {
-    const grid = document.querySelector('.image-grid');
+    const grid = document.querySelector(".image-grid");
     if (grid) {
       imagesLoaded(grid, () => {
         new Masonry(grid, {
-          itemSelector: '.image-item',
-          columnWidth: '.image-item',
+          itemSelector: ".image-item",
+          columnWidth: ".image-item",
           percentPosition: true,
           gutter: 15,
         });
@@ -34,7 +37,8 @@ const Pins = () => {
   }, [itemData]);
 
   const handleImageClick = (alt) => {
-    const url = `https://sideboards.mikasahub.com?ImageID=${encodeURIComponent(alt)}`;
+    const baseUrl = window.location.origin; 
+    const url = `${baseUrl}/?ImageID=${encodeURIComponent(alt)}`;
     window.location.href = url;
   };
 

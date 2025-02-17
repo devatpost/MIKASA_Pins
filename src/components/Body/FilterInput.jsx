@@ -1,6 +1,6 @@
 import React from "react";
 
-const FilterInput = () => {
+const FilterInput = ({ setSelectedCategory, setSelectedMaterial }) => {
   return (
     <div className="filterInput">
       <div className="innerBox">
@@ -8,18 +8,19 @@ const FilterInput = () => {
           <div>
             <div className="smallHeading">Imagine a</div>
             <div className="imagineDrop">
-              <select className="dropdown">
-                <option value="Option1">Cabinet</option>
-                <option value="Option2">Shelf</option>
+              <select className="dropdown" name="furniture" onChange={(e) => setSelectedCategory(e.target.value)}>
+                <option value="Sideboard">Sideboard</option>
+                <option value="Shelf">Shelf</option>
               </select>
             </div>
           </div>
           <div className="madeContainer">
             <div className="smallHeading">Made of</div>
             <div className="imagineDrop">
-              <select className="dropdown">
-                <option value="Material1">wool</option>
-                <option value="Material2">uranium</option>
+              <select className="dropdown" name="material" onChange={(e) => setSelectedMaterial(e.target.value)}>
+                <option value="all">All</option>
+                <option value="Plain">Plain</option>
+                <option value="Texture">Textured</option>
               </select>
             </div>
           </div>
