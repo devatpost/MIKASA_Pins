@@ -100,9 +100,9 @@
 }
 
 /* plus icon initially hidden */
-/* .plusIcon {
-    width: 2.5rem;
-    height: 2.5rem;
+.plusIcon {
+    width: 40px;
+    height: 40px;
     background-color: rgba(243, 243, 243, 0.4); 
     cursor: pointer;
     position: absolute;
@@ -114,17 +114,21 @@
     justify-content: center;
     border-radius: 50%;
     box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
-} */
+}
 
-/* .plusIcon img {
-    width: 0.9375rem;
-    height: 0.875rem;
-} */
+.plusIcon img {
+    width: 18px;
+    height: 18px;
+}
 
 /* Show the icon on hover */
-.image-item:hover {
-    transform: scale(1.03); 
-    z-index: 10001;
+.image-item:hover .plusIcon{
+    display: flex;
+}
+
+.image-item:hover .cursor-pointer{
+  transform: scale(1.03);
+  filter: blur(1px);
 }
 
 .image-grid {
