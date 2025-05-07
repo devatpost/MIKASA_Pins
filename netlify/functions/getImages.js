@@ -16,7 +16,6 @@ export const handler = async (event) => {
     // Construct the query dynamically
     let query = `
       MATCH (i:Image)-[r:HAS_CONFIGURATION]->(c:Configuration)
-      MATCH (c)-[:HAS_MATERIAL]->(m:Material)
       WHERE 1=1
     `;
 
@@ -25,11 +24,6 @@ export const handler = async (event) => {
     if (furniture_type) {
       query += ` AND r.furniture_type = $furniture_type`;
       params.furniture_type = furniture_type;
-    }
-
-    if (material_type && material_type !== 'all') {
-      query += ` AND m.material_type = $material_type`;
-      params.material_type = material_type;
     }
 
     query += ` RETURN i.name AS name, i.url AS url`;

@@ -7,27 +7,10 @@ import cross from '../../assets/cross.svg'
 const Pins = ({ selectedCategory, selectedMaterial }) => {
   const [itemData, setItemData] = useState([])
 
-  // const demo=[{
-  //   img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-  //   title: 'Fern',
-  // },
-  // {
-  //   img: 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f',
-  //   title: 'Snacks',
-  // },
-  // {
-  //   img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-  //   title: 'Mushrooms',
-  // },
-  // {
-  //   img: 'https://images.unsplash.com/photo-1529655683826-aba9b3e77383',
-  //   title: 'Tower',
-  // }]
-
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get("/.netlify/functions/getImages", {
+        const response = await axios.post("https://hy82gexng7.execute-api.ap-south-1.amazonaws.com/dev/pins/fetchimages", {
           params: { furniture_type: selectedCategory, material_type: selectedMaterial },
         });
         setItemData(response.data);
@@ -55,8 +38,8 @@ const Pins = ({ selectedCategory, selectedMaterial }) => {
   }, [itemData]);
 
   const handleImageClick = (alt) => {
-    const baseUrl = window.location.origin; 
-    const url = `${baseUrl}/?ImageID=${encodeURIComponent(alt)}`;
+    const baseUrl = window.location.origin;
+    const url = `${baseUrl}/?Image_id=${encodeURIComponent(alt)}`;
     window.location.href = url;
   };
 
